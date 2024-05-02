@@ -1,0 +1,93 @@
+import com.mysql.cj.protocol.Resultset;
+
+import java.sql.*;
+import java.util.Scanner;
+
+public class SecondQuestionJDBCProgram {
+    public static void main(String args[]) throws SQLException {
+        Scanner s= new Scanner(System.in);
+        int code;
+        String name;
+        int age;
+        int salary;
+        String query = "insert into employee values(?,?,?,?)";
+        String query1 = "select * from employee";
+        ResultSet resultSet =null;
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/tasks?user=root&password=Sharmy@123");
+        System.out.print("enter the number of rows you want to enter");
+        int rows = s.nextInt();
+        for(int i=1;i<=rows;i++){
+            System.out.print("enter employee code");
+            code =s.nextInt();
+            System.out.print("enter employee name");
+            name =s.next();
+            System.out.print("enter employee age");
+            age =s.nextInt();
+            System.out.print("enter employee salary");
+            salary =s.nextInt();
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1,code);
+            statement.setString(2,name);
+            statement.setInt(3,age);
+            statement.setInt(4,salary);
+            statement.executeUpdate();
+        }
+        PreparedStatement statement = connection.prepareStatement(query1);
+        resultSet =statement.executeQuery();
+        while (resultSet.next()) {
+            System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2) + " " + resultSet.getInt(3) + " " +
+                    resultSet.getInt(4));
+        }
+        connection.close();
+    }
+}
+
+
+OUTPUT:
+enter the number of rows you want to enter
+5
+enter employee code
+101
+enter employee name
+Jenny
+enter employee age
+25
+enter employee salary
+10000
+enter employee code
+102
+enter employee name
+Jacky
+enter employee age
+30
+enter employee salary
+20000
+enter employee code
+103
+enter employee name
+Joe
+enter employee age
+20
+enter employee salary
+40000
+enter employee code
+104
+enter employee name
+John
+enter employee age
+40
+enter employee salary
+80000
+enter employee code
+105
+enter employee name
+Shameer
+enter employee age
+25
+enter employee salary
+90000
+101 Jenny 25 10000
+102 Jacky 30 20000
+103 Joe 20 40000
+104 John 40 80000
+105 Shameer 25 90000
