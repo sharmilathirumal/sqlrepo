@@ -1,10 +1,10 @@
 A ==> select ename,sal from empl where sal>=2200	
 OUTPUT:
-MAHADHEVAN	2985
-BINA	    2850
-SHIVANSH	2450
-SCOTT	    3000
-AMIR	    5000
+MAHADHEVAN 2985
+BINA	     2850
+SHIVANSH	 2450
+SCOTT	     3000
+AMIR	     5000
 
 B==> select * from empl where comm is null
 
