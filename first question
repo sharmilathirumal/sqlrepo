@@ -16,7 +16,7 @@ OUTPUT
 8888	SCOTT	ANALYST	8566	1992-12-09	3000		20
 8839	AMIR	PRESIDENT		1991-11-18	5000		10
 
-C ==> select * from empl where sal not in (select sal from empl where sal between 2500 and 4000)
+C ==> select ename,sal from empl where sal not in (select sal from empl where sal between 2500 and 4000)
 
 OUTPUT:
 8369	SMITH	CLERK	8902	1990-12-18	800		20
